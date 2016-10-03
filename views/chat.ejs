@@ -1,0 +1,83 @@
+<html>
+<head>
+
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Compiled and minified CSS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+        <!--jQuery-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!--Compiled and minified JavaScript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <!--socket.io-->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <!--Get user var from EJS, so it can be used in JS-->
+        <% if (user) { %>
+                <script>
+                        var user = <%- JSON.stringify(user) %>;
+                </script>
+        <% } %>
+        <script src="/js/clientScript.js"></script>
+
+        <title>LocalChat</title>
+
+</head>
+
+<body>
+        <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">OtherPage</a></li>
+                <li><a href="#!">UserPage</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="navbar-fixed">
+                <nav style="opacity: 0.75;">
+                        <div class="nav-wrapper cyan darken-2">
+                                <a class="brand-logo center">LocalChat</a>
+                                <ul class="right hide-on-med-and-down">
+                                        <li class="active"><a href="#s"><i class="material-icons left" style="font-size: 20px;">mode_comment</i>Chat</a></li>
+                                        <li><a href="/rooms"><i class="material-icons left" style="font-size: 20px;">filter_none</i>Public</a></li>
+                                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1" constrainwidth="false" alignment="right" hover="true"><i class="material-icons left" style="font-size: 20px;">account_box</i><%= user.local.username %></a></li>
+                                </ul>
+
+                                <div class="input-field left" style="width: 43%">
+                                        <input id="message" type="text" autofocus="autofocus">
+                                        <label for="message"><i id="msgBoxIcon" class="material-icons">play_arrow</i></label>
+                                </div>
+                        </div>
+                </nav>
+        </div>
+        <div class="fixed-action-btn" style="bottom: 10px; right: 10px;">
+                <a class="btn-flat btn-large transparent">
+                        <i class="material-icons" style="font-size: 30px;">settings</i>
+                </a>
+                <ul>
+                      <li><a class="btn-floating tooltipped grey" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">insert_chart</i></a></li>
+                      <li><a class="btn-floating tooltipped grey" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">format_quote</i></a></li>
+                      <li><a class="btn-floating tooltipped grey" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">publish</i></a></li>
+                      <li><a class="btn-floating tooltipped grey" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">attach_file</i></a></li>
+                </ul>
+        </div>
+        <div class="row">
+                <div class="col s9" id="liveTypeRow"></div>
+        </div>
+        <div class="row">
+
+                <!--
+                <div class="col s3" style="background-color: #9e9e9e;" id="sidebar">
+                        <div style="height:100%"></div>
+                </div>-->
+
+                <div class="col s9" id="pagecontent">
+                        <table id="main_table">
+        			<tbody>
+        				<tr></tr>
+        			</tbody>
+        		</table>
+                </div>
+
+        </div>
+</body>
+</html>

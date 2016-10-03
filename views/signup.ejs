@@ -2,46 +2,39 @@
 <!doctype html>
 <html>
 <head>
-	<title>LocalChat</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+        <!--jQuery-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+        <title>LocalChat</title>
+
 </head>
 <body>
-<div class="container">
+        <div style="width: 25%; margin: auto; transform: translateY(50%);">
+                                <h1>LocalChat</h1>
+                                <form action="/signup" method="post">
+                                        <div class="input-field">
+                                                <input type="text" id="username" class="validate" name="username">
+                                                <label for="username">Username</label>
+                                        </div>
+                                        <div class="input-field">
+                                                <label for="password">Password</label>
+                                                <input type="password" id="password" class="validate" name="password">
+                                        </div>
 
-<div class="col-sm-6 col-sm-offset-3">
-
-	<h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-	<!-- show any messages that come back with authentication -->
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %>
-
-	<!-- LOGIN FORM -->
-	<form action="/signup" method="post">
-		<div class="form-group">
-			<label>Email</label>
-			<input type="text" class="form-control" name="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
-
-		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
-	</form>
-
-	<hr>
-
-	<p>Already have an account? <a href="/login">Login</a></p>
-	<p>Or go <a href="/">home</a>.</p>
-
-</div>
-
-</div>
+                                        <button type="submit" class="left waves-effect waves-light btn cyan">Signup</button>
+                                </form>
+                                <br><br><br>
+                                <% if (message.length > 0) { %><!--Fuckin' ejs, I swear to god you will be the death of me-->
+                                <div class="card-panel red lighten-3"><%= message %></div>
+                                <% } %>
+        </div>
 </body>
 </html>
