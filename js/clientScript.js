@@ -1,5 +1,6 @@
 $(document).ready(function(){
         var socket = io.connect();
+        var liveTyping = false;
 
         $("#msgBoxIcon").hover(
                function () {
@@ -11,6 +12,20 @@ $(document).ready(function(){
                }
             );
 
+        $("#liveTypingButton").click(function(){
+                liveTyping = !liveTyping;
+                $("#liveTypingButton").tooltip('remove');
+                if(liveTyping){
+                        $("#liveTypingButton").attr('data-tooltip', 'Disable LiveTyping');
+                        $("#liveTypingIcon").text('format_strikethrough');
+                } else {
+                        $("#liveTypingButton").attr('data-tooltip', 'Enable LiveTyping');
+                        $("#liveTypingIcon").text('title');
+                }
+                $("#liveTypingButton").tooltip();
+                console.log("LT BTN" + liveTyping);
+        });
+
 
         $("#message").keyup(function(event){
                 //Send contents of messaage box and clear it when enter is pressed.
@@ -18,7 +33,7 @@ $(document).ready(function(){
                         socket.emit('msg', {"user": user, "message":$("#message").val()});
                         socket.emit('liveType', {"username": user.local.username, "content":""});
                         $("#message").val("");
-                } else {
+                } else if(liveTyping){
                         socket.emit('liveType', {"username": user.local.username, "content":$("#message").val()});
                 }
         });
